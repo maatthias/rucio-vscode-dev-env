@@ -25,6 +25,8 @@ COPY certs/hostcert.pem /etc/grid-security/hostcert.pem.cern.ca
 COPY certs/hostkey.pem /etc/grid-security/hostkey.pem.cern.ca
 COPY certs/ca-bundle.pem /etc/grid-security/ca-bundle.pem
 
+COPY certs/rucio_ca.pem /etc/grid-security/certificates/5fca1cb1.0
+
 ## Copy CA chain used for issuing client certificates
 COPY client-ca/intermediate/certs/ca-chain.cert.pem /etc/grid-security/client-ca-bundle.pem
 
@@ -33,6 +35,7 @@ ENV LC_ALL="en_US.utf-8"
 ENV FLASK_ENV="development"
 ENV FLASK_DEBUG=1
 ENV PYTHONPATH="$PYTHONPATH:/opt/rucio/lib:/opt/rucio/debug_utils"
+
 ENV CA_BUNDLE="/etc/grid-security/ca-bundle.pem"
 # Keeps Python from generating .pyc files in the container
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -55,7 +58,8 @@ RUN (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == \
     rm -f /lib/systemd/system/anaconda.target.wants/*;
 
 VOLUME [ "/sys/fs/cgroup" ]
-CMD ["/usr/sbin/init"]
+# CMD ["/usr/sbin/init"]
+CMD ["httpd","-D","FOREGROUND"]
 
 
 
