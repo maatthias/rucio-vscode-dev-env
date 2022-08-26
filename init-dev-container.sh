@@ -23,11 +23,11 @@ tools/run_tests_docker.sh -ir
 echo "Done!"
 echo ""
 
-echo "************* Disable httpd ******************"
-echo "**********************************************"
-pkill httpd
-echo "Done!"
-echo ""
+# echo "************* Disable httpd ******************"
+# echo "**********************************************"
+# pkill httpd
+# echo "Done!"
+# echo ""
 
 echo "************* Apply Debug Configuration ***********"
 echo "***************************************************"
@@ -44,7 +44,7 @@ cp /etc/grid-security/hostcert.pem /etc/grid-security/hostcert.pem.orig
 cp /etc/grid-security/hostcert.pem.cern.ca /etc/grid-security/hostcert.pem
 cp /etc/grid-security/hostkey.pem.cern.ca /etc/grid-security/hostkey.pem
 
-echo "export X509_CERT_DIR=/etc/grid-security/ca-bundle.pem" >> ~/.bashrc
+# echo "export X509_CERT_DIR=/etc/grid-security/ca-bundle.pem" >> ~/.bashrc
 
 echo "Done!"
 echo ""
